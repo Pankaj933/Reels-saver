@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090c12">
+  <meta name="description"
+        content="Paste a YouTube or Instagram link, pick a quality and download.">
+  <title>ReelSaver — Video Downloader</title>
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="ReelSaver home">
+      <span class="brand-mark" aria-hidden="true">▶</span>
+      Reel<span>Saver</span>
+    </a>
+    <div class="topbar-actions">
+      <div class="topbar-note"><span class="status-dot"></span> Your videos, your way</div>
+      <button class="theme-toggle" id="themeToggle" type="button"
+              aria-label="Switch to light mode">☀ Light mode</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> THE EASY WAY TO SAVE</div>
+        <h1 id="heroTitle">Your favorite videos.<br><span>Ready when you are.</span></h1>
+        <p class="subtitle">
+          Save videos and reels for offline viewing in just a few clicks.
+          Pick the quality that works for you and you’re good to go.
+        </p>
+
+        <div class="features" aria-label="How it works">
+          <div class="feature">
+            <strong>01</strong>
+            <span><b>Drop a link</b><small>YouTube or Instagram</small></span>
+          </div>
+          <div class="feature">
+            <strong>02</strong>
+            <span><b>Choose quality</b><small>Up to the best available</small></span>
+          </div>
+          <div class="feature">
+            <strong>03</strong>
+            <span><b>Save & enjoy</b><small>Right on your device</small></span>
+          </div>
+        </div>
+      </div>
+
+      <section class="tool" aria-label="Video download tool">
+        <div class="tool-heading">
+          <div class="tool-icon" aria-hidden="true">↓</div>
+          <div>
+            <p class="tool-kicker">QUICK DOWNLOAD</p>
+            <h2>Let’s get your video</h2>
+          </div>
+          <span class="secure-badge"><span></span> Ready</span>
+        </div>
+
+        <div class="platforms" role="group" aria-label="Choose a platform">
+          <button class="platform active" data-platform="youtube"
+                  type="button">▶ <span>YouTube</span></button>
+          <button class="platform" data-platform="instagram"
+                  type="button">◎ <span>Instagram</span></button>
+        </div>
+
+        <form id="urlForm">
+          <label for="videoUrl">Video or Reel URL</label>
+          <div class="url-row">
+            <input id="videoUrl" type="url" required maxlength="2048"
+                   placeholder="Paste a YouTube video URL"
+                   autocomplete="url">
+            <button class="paste" id="pasteBtn" type="button">Paste</button>
+          </div>
+          <button class="primary" id="inspectBtn" type="submit">
+            Get video info <span aria-hidden="true">↗</span>
+          </button>
+        </form>
+
+        <div id="status" class="status" role="status"
+             aria-live="polite"></div>
+
+        <section id="result" class="result" aria-live="polite" hidden>
+          <div class="result-head">
+            <span class="result-label">VIDEO FOUND</span>
+            <span id="platformName" class="pill"></span>
+          </div>
+
+          <img id="thumb" class="thumb" alt="Video thumbnail" hidden>
+          <h3 id="title" class="video-title"></h3>
+
+          <form id="downloadForm">
+            <input id="dlUrl" type="hidden">
+            <label for="quality">Select quality</label>
+            <select id="quality" name="quality"></select>
+            <button class="primary" id="downloadBtn" type="submit">
+              Download video <span aria-hidden="true">↓</span>
+            </button>
+          </form>
+
+          <p class="fine-print">
+            Only download content you own or have permission to download.
+          </p>
+        </section>
+
+        <iframe name="dlFrame" id="dlFrame" title="download" hidden></iframe>
+        <p class="tool-footnote"><span>✦</span> No sign-up. Just paste and go.</p>
+      </section>
+    </section>
+
+    <footer>
+      <span>© ReelSaver</span>
+      <span>Independent project · Not affiliated with YouTube or Instagram</span>
+      <span>Creator rights and platform rules apply.</span>
+    </footer>
+
+    <div id="dlModal" class="modal" hidden>
+      <div class="modal-box" role="dialog" aria-modal="true"
+           aria-labelledby="modalTitle">
+        <div class="modal-icon" aria-hidden="true">↓</div>
+        <h3 id="modalTitle">Preparing...</h3>
+        <div class="bar">
+          <div id="barFill" class="bar-fill indeterminate"></div>
+        </div>
+        <div class="modal-info">
+          <span id="modalPercent"></span>
+          <span id="modalSize"></span>
+        </div>
+        <p id="modalNote">Server video prepare kar raha hai...</p>
+        <button id="modalClose" class="secondary" type="button">Cancel</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
