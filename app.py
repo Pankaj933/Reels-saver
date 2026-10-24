@@ -6,7 +6,10 @@ from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
 import yt_dlp
-from flask import Flask, jsonify, render_template, request, send_file
+from flask import (
+    Flask, jsonify, render_template, request,
+    send_file, make_response
+)
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -99,6 +102,17 @@ def fmt_size(f):
 def home():
     return render_template("index.html")
 
+@app.get("/sw.js")
+def service_worker():
+    response = make_response(
+        send_file(
+            app.static_folder + "/sw.js",
+            mimetype="application/javascript"
+        )
+    )
+    response.headers["Service-Worker-Allowed"] = "/"
+    response.headers["Cache-Control"] = "no-cache"
+    return response
 
 @app.get("/health")
 def health():
