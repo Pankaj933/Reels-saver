@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090c12">
+  {% if page == "terms" %}
+  <meta name="description" content="Read the ReelSaver terms and conditions.">
+  <title>Terms &amp; Conditions — ReelSaver</title>
+  {% else %}
+  <meta name="description" content="Read the ReelSaver privacy policy.">
+  <title>Privacy Policy — ReelSaver</title>
+  {% endif %}
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="ReelSaver home">
+      <span class="brand-mark" aria-hidden="true">▶</span>
+      Reel<span>Saver</span>
+    </a>
+    <div class="topbar-actions">
+      <a class="legal-home-link" href="/">Back to home</a>
+      <button class="theme-toggle" id="themeToggle" type="button"
+              aria-label="Switch to light mode">☀ Light mode</button>
+    </div>
+  </header>
+
+  <main class="page-shell legal-page">
+    {% if page == "terms" %}
+    <div class="eyebrow"><span></span> REELSAVER</div>
+    <h1 id="legalTitle">Terms &amp; <span>Conditions.</span></h1>
+    <p class="legal-updated">Last updated: October 24, 2026</p>
+
+    <article class="legal-content" aria-labelledby="legalTitle">
+      <p>
+        By using ReelSaver, you agree to these terms. If you do not agree,
+        please do not use the service.
+      </p>
+
+      <section>
+        <h2>Using the service</h2>
+        <p>
+          ReelSaver lets you submit supported YouTube and Instagram links to
+          retrieve available video information and request a download. The
+          service is provided as-is and may change, become unavailable, or
+          stop supporting a platform at any time.
+        </p>
+      </section>
+
+      <section>
+        <h2>Your responsibility for content</h2>
+        <p>
+          You may only download or use content when you own it or have
+          permission and a legal right to do so. You are responsible for
+          complying with copyright law, the rights of creators, and the
+          applicable terms and rules of YouTube, Instagram, and any other
+          relevant service. ReelSaver does not grant you rights to content.
+        </p>
+      </section>
+
+      <section>
+        <h2>Acceptable use</h2>
+        <p>
+          Do not use ReelSaver to break the law, infringe another person's
+          rights, interfere with the service, or attempt to bypass platform
+          restrictions. We may limit or block access to protect the service
+          and its users.
+        </p>
+      </section>
+
+      <section>
+        <h2>Third-party platforms</h2>
+        <p>
+          ReelSaver is an independent project and is not affiliated with,
+          endorsed by, or sponsored by YouTube, Instagram, or their owners.
+          Those platforms operate under their own terms and privacy policies.
+        </p>
+      </section>
+
+      <section>
+        <h2>No warranty and limitation</h2>
+        <p>
+          To the extent permitted by law, ReelSaver is provided without
+          warranties of any kind. We are not responsible for losses arising
+          from use of the service, unavailable downloads, or your use of
+          downloaded content. Nothing in these terms limits rights or
+          liabilities that cannot legally be limited.
+        </p>
+      </section>
+
+      <section>
+        <h2>Changes to these terms</h2>
+        <p>
+          These terms may be updated from time to time. The date above shows
+          when they were last revised. Continued use after a change means you
+          accept the updated terms.
+        </p>
+      </section>
+    </article>
+    {% else %}
+    <div class="eyebrow"><span></span> REELSAVER</div>
+    <h1 id="legalTitle">Privacy <span>Policy.</span></h1>
+    <p class="legal-updated">Last updated: October 24, 2026</p>
+
+    <article class="legal-content" aria-labelledby="legalTitle">
+      <p>
+        This policy describes what information is handled when you use
+        ReelSaver and how it is used.
+      </p>
+
+      <section>
+        <h2>Information you submit</h2>
+        <p>
+          When you request video information or a download, the video URL and
+          your selected quality are sent to our server to fulfill that
+          request. The server contacts the relevant platform to retrieve
+          available information or video data. The app does not require an
+          account and does not save submitted URLs in an application database.
+        </p>
+      </section>
+
+      <section>
+        <h2>Temporary processing</h2>
+        <p>
+          A requested download may be processed in a temporary server
+          directory so it can be sent to you. Temporary files are removed
+          after a completed or failed download, subject to unexpected server
+          interruptions or technical limitations.
+        </p>
+      </section>
+
+      <section>
+        <h2>Theme preference and local storage</h2>
+        <p>
+          If you change the site's appearance, your theme preference is saved
+          in your browser's local storage under the key
+          <code>reelsaver-theme</code>. This preference stays on your device
+          and can be removed through your browser settings.
+        </p>
+      </section>
+
+      <section>
+        <h2>Service providers and logs</h2>
+        <p>
+          Video URLs are sent to the third-party platform they point to.
+          Hosting providers may also process standard connection and error
+          logs, such as IP address, request time, and requested path, as part
+          of operating and securing the service. Log retention depends on the
+          hosting provider's configuration and policies.
+        </p>
+      </section>
+
+      <section>
+        <h2>Cookies and analytics</h2>
+        <p>
+          The application does not set tracking or analytics cookies and does
+          not include an analytics service. Your browser or hosting provider
+          may have its own technical storage or logging behavior.
+        </p>
+      </section>
+
+      <section>
+        <h2>Data security and changes</h2>
+        <p>
+          Reasonable steps are taken to handle requests for the service, but
+          no internet transmission or storage system can be guaranteed
+          completely secure. This policy may be updated as the service
+          changes; the date above indicates the latest revision.
+        </p>
+      </section>
+    </article>
+    {% endif %}
+
+    <footer>
+      <span>© ReelSaver</span>
+      <nav class="footer-links" aria-label="Legal information">
+        <a href="{{ url_for('terms') }}">Terms &amp; Conditions</a>
+        <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+      </nav>
+    </footer>
+  </main>
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+    function setTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      const isDark = theme === "dark";
+      themeToggle.textContent = isDark ? "☀ Light mode" : "☾ Dark mode";
+      themeToggle.setAttribute(
+        "aria-label",
+        `Switch to ${isDark ? "light" : "dark"} mode`
+      );
+      themeMeta.content = isDark ? "#090c12" : "#f5f7f1";
+    }
+
+    setTheme(localStorage.getItem("reelsaver-theme") === "light" ? "light" : "dark");
+    themeToggle.addEventListener("click", () => {
+      const theme = document.documentElement.dataset.theme === "dark"
+        ? "light"
+        : "dark";
+      setTheme(theme);
+      localStorage.setItem("reelsaver-theme", theme);
+    });
+  </script>
+</body>
+</html>

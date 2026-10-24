@@ -102,6 +102,17 @@ def fmt_size(f):
 def home():
     return render_template("index.html")
 
+
+@app.get("/terms")
+def terms():
+    return render_template("legal_page.html", page="terms")
+
+
+@app.get("/privacy")
+def privacy():
+    return render_template("legal_page.html", page="privacy")
+
+
 @app.get("/sw.js")
 def service_worker():
     response = make_response(

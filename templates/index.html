@@ -115,7 +115,10 @@
     <footer>
       <span>© ReelSaver</span>
       <span>Independent project · Not affiliated with YouTube or Instagram</span>
-      <span>Creator rights and platform rules apply.</span>
+      <nav class="footer-links" aria-label="Legal information">
+        <a href="{{ url_for('terms') }}">Terms &amp; Conditions</a>
+        <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+      </nav>
     </footer>
 
     <div id="dlModal" class="modal" hidden>

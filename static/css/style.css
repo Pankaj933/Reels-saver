@@ -447,6 +447,79 @@ footer {
 
 footer span:first-child { color: #a5aeb9; font-weight: 700; }
 
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-links a, .legal-home-link {
+  color: var(--lime);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.footer-links a:hover, .legal-home-link:hover { text-decoration: underline; }
+
+.legal-home-link { font-size: 12px; }
+
+.legal-page {
+  min-height: calc(100vh - 84px);
+  padding-top: 55px;
+}
+
+.legal-page h1 {
+  margin: 18px 0 8px;
+  font-size: clamp(38px, 6vw, 58px);
+  letter-spacing: -2.5px;
+}
+
+.legal-updated {
+  margin: 0 0 30px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.legal-content {
+  max-width: 780px;
+  padding: 26px;
+  border: 1px solid #ffffff14;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #151b25, #10151d 72%);
+  color: #aeb7c3;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.legal-content p { margin: 0 0 18px; }
+.legal-content p:last-child { margin-bottom: 0; }
+.legal-content section + section { margin-top: 25px; }
+
+.legal-content h2 {
+  margin: 0 0 7px;
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.legal-content code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: #ffffff10;
+  color: var(--lime);
+  font-size: .9em;
+}
+
+.legal-page footer { margin-top: 38px; }
+
+:root[data-theme="light"] .legal-content {
+  border-color: #20271d1c;
+  background: linear-gradient(145deg, #ffffff, #f4f7ef 72%);
+  color: #5f6a59;
+}
+
+:root[data-theme="light"] .legal-content h2 { color: #252d21; }
+
 .modal {
   position: fixed;
   inset: 0;
@@ -685,6 +758,8 @@ button:focus-visible, a:focus-visible {
   .features { justify-content: space-between; gap: 12px; margin-top: 30px; }
   .tool { padding: 22px; }
   footer { align-items: flex-start; flex-direction: column; justify-content: center; gap: 7px; padding: 20px 0; }
+  .legal-page { min-height: calc(100vh - 70px); padding-top: 40px; }
+  .legal-content { padding: 20px; font-size: 13px; }
 }
 
 @media (max-width: 420px) {
