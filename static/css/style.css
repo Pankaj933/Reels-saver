@@ -694,7 +694,8 @@ button:focus-visible, a:focus-visible {
   .theme-toggle { padding: 8px 9px; font-size: 10px; }
   .hero { padding-top: 41px; }
   .subtitle { font-size: 13px; }
-  .features { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .feature { flex-direction: column; gap: 6px; }
   .feature small { max-width: none; }
   .tool { padding: 18px; border-radius: 16px; }
   .tool-heading { gap: 10px; }
