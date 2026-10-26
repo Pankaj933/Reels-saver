@@ -141,6 +141,10 @@ def inspect():
         with yt_dlp.YoutubeDL(ydl_base()) as ydl:
             info = ydl.extract_info(result["url"], download=False)
     except Exception:
+        app.logger.exception(
+            "Video info extraction failed for %s",
+            result["platform"],
+        )
         return jsonify({
             "ok": False,
             "error": "Video info nahi mili (private/blocked ho sakti hai).",
