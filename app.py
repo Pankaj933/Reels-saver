@@ -94,6 +94,19 @@ def ydl_base():
         "noplaylist": True,
         "ffmpeg_location": imageio_ffmpeg.get_ffmpeg_exe(),
     }
+
+
+def is_youtube_bot_check_error(error):
+    message = str(error).lower()
+    return "sign in to confirm" in message and "not a bot" in message
+
+
+YOUTUBE_BOT_CHECK_MESSAGE = (
+    "YouTube ne is server ki request ko bot-check par rok diya. "
+    "Kuch der baad dobara try karein."
+)
+
+
 def fmt_size(f):
     return f.get("filesize") or f.get("filesize_approx") or 0
 
@@ -140,11 +153,16 @@ def inspect():
     try:
         with yt_dlp.YoutubeDL(ydl_base()) as ydl:
             info = ydl.extract_info(result["url"], download=False)
-    except Exception:
+    except Exception as e:
         app.logger.exception(
             "Video info extraction failed for %s",
             result["platform"],
         )
+        if is_youtube_bot_check_error(e):
+            return jsonify({
+                "ok": False,
+                "error": YOUTUBE_BOT_CHECK_MESSAGE,
+            }), 503
         return jsonify({
             "ok": False,
             "error": "Video info nahi mili (private/blocked ho sakti hai).",
@@ -224,8 +242,13 @@ def download():
         if not Path(path).exists():
             raise FileNotFoundError(path)
     except Exception as e:
-        print("Download error:", e)  # terminal me asli error dikhega
+        app.logger.exception("Download failed for %s", result["platform"])
         shutil.rmtree(tmp, ignore_errors=True)
+        if is_youtube_bot_check_error(e):
+            return jsonify({
+                "ok": False,
+                "error": YOUTUBE_BOT_CHECK_MESSAGE,
+            }), 503
         return jsonify({"ok": False, "error": "Download fail ho gaya."}), 500
 
     name = secure_filename(info.get("title") or "video") or "video"
