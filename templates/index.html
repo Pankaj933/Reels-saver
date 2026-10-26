@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090c12">
   <meta name="description"
-        content="Paste a YouTube or Instagram link, pick a quality and download.">
+        content="Paste an Instagram Reel or post link, pick a quality and download.">
   <title>ReelSaver — Video Downloader</title>
   <link rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}">
@@ -38,7 +38,7 @@
         <div class="features" aria-label="How it works">
           <div class="feature">
             <strong>01</strong>
-            <span><b>Drop a link</b><small>YouTube or Instagram</small></span>
+            <span><b>Drop a link</b><small>Instagram Reel or post</small></span>
           </div>
           <div class="feature">
             <strong>02</strong>
@@ -61,18 +61,11 @@
           <span class="secure-badge"><span></span> Ready</span>
         </div>
 
-        <div class="platforms" role="group" aria-label="Choose a platform">
-          <button class="platform active" data-platform="youtube"
-                  type="button">▶ <span>YouTube</span></button>
-          <button class="platform" data-platform="instagram"
-                  type="button">◎ <span>Instagram</span></button>
-        </div>
-
         <form id="urlForm">
           <label for="videoUrl">Video or Reel URL</label>
           <div class="url-row">
             <input id="videoUrl" type="url" required maxlength="2048"
-                   placeholder="Paste a YouTube video URL"
+                   placeholder="Paste an Instagram Reel or post URL"
                    autocomplete="url">
             <button class="paste" id="pasteBtn" type="button">Paste</button>
           </div>
@@ -114,7 +107,7 @@
 
     <footer>
       <span>© ReelSaver</span>
-      <span>Independent project · Not affiliated with YouTube or Instagram</span>
+      <span>Independent project · Not affiliated with Instagram</span>
       <nav class="footer-links" aria-label="Legal information">
         <a href="{{ url_for('terms') }}">Terms &amp; Conditions</a>
         <a href="{{ url_for('privacy') }}">Privacy Policy</a>

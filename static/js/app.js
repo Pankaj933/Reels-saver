@@ -37,8 +37,6 @@ themeToggle.addEventListener("click", () => {
   localStorage.setItem("reelsaver-theme", theme);
 });
 
-let selectedPlatform = "youtube";
-
 function setStatus(text, type = "info") {
   statusBox.textContent = text;
   statusBox.className = `status ${type}`;
@@ -51,25 +49,6 @@ function resetResult() {
   titleEl.textContent = "";
   qualitySel.replaceChildren();
 }
-
-// Platform tabs
-document.querySelectorAll(".platform").forEach(button => {
-  button.addEventListener("click", () => {
-    selectedPlatform = button.dataset.platform;
-
-    document.querySelectorAll(".platform").forEach(item => {
-      item.classList.toggle("active", item === button);
-    });
-
-    urlInput.placeholder = selectedPlatform === "youtube"
-      ? "Paste a YouTube video URL"
-      : "Paste an Instagram Reel/Post URL";
-
-    urlInput.value = "";
-    setStatus("");
-    resetResult();
-  });
-});
 
 // Paste button
 document.getElementById("pasteBtn").addEventListener("click", async () => {
@@ -125,11 +104,8 @@ form.addEventListener("submit", async event => {
 
     const data = payload.data;
 
-    if (
-      (selectedPlatform === "youtube" && data.platform !== "YouTube") ||
-      (selectedPlatform === "instagram" && data.platform !== "Instagram")
-    ) {
-      throw new Error("Selected platform aur URL match nahi karte.");
+    if (data.platform !== "Instagram") {
+      throw new Error("Please Instagram Reel ya post ka URL enter karein.");
     }
 
     platformName.textContent = data.platform;
